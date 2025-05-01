@@ -1,8 +1,10 @@
 import pygame
 import random
+import asyncio
 
 pygame.init()
 screen = pygame.display.set_mode((600,600))
+pygame.display.set_caption("Falling Sand Simulation")
 clock = pygame.time.Clock()
 running = True
 dt = 0
@@ -81,9 +83,10 @@ class Sand:
 	def update_dune_grid(self, val):
 		dune_grid[self.x][self.y] = val
 
-def main():
+async def main():
 	global running
 	while running:
+		await asyncio.sleep(0)
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
 				running = False
@@ -101,5 +104,4 @@ def main():
 		clock.tick(60)
 
 
-if __name__ == "__main__":
-	main()
+asyncio.run(main())
